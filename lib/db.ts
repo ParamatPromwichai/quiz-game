@@ -6,4 +6,8 @@ export const db = mysql.createPool({
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   port: Number(process.env.DB_PORT),
+  // เพิ่ม 3 บรรทัดนี้เพื่อช่วยจัดการ Connection ใน Serverless
+  waitForConnections: true,
+  connectionLimit: 5, // ปรับลงมาเป็น 5-10 เพื่อไม่ให้ Railway โหลดหนักเกินไป
+  queueLimit: 0,
 });
